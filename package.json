@@ -1,0 +1,12 @@
+{
+  "name": "uwatchme",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "UwatchMe: free, legal films and series (PWA + Vercel functions)",
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "dev": "vercel dev",
+    "test": "node tests/api.test.mjs"
+  }
+}

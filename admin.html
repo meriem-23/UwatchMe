@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#16173D">
+  <title>UwatchMe · catalogue</title>
+  <link rel="icon" href="/icons/icon-192.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;500;600&family=Reem+Kufi:wght@500;600;700&display=swap">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <main class="admin">
+    <h1 class="page-title">Catalogue des séries gratuites</h1>
+    <p class="page-note">Ajoutez seulement des playlists publiées par la chaîne officielle qui détient les droits (chaîne TV, producteur, distributeur). Quand vous avez fini, téléchargez catalog.json, remplacez le fichier dans le repo et poussez sur GitHub : Vercel redéploie tout seul.</p>
+
+    <section class="admin-card">
+      <h2>1. Clé admin</h2>
+      <label class="field"><span class="label">ADMIN_KEY (la même valeur que dans Vercel)</span>
+        <input id="admin-key" type="password" autocomplete="off" spellcheck="false"></label>
+    </section>
+
+    <section class="admin-card">
+      <h2>2. Ajouter une playlist YouTube</h2>
+      <div class="admin-inline">
+        <input id="pl-url" type="text" inputmode="url" autocomplete="off" spellcheck="false" placeholder="https://www.youtube.com/playlist?list=PL…">
+        <button class="btn btn-primary" id="pl-load" type="button">Charger</button>
+      </div>
+      <p id="status" class="muted small" role="status"></p>
+
+      <div id="step2" hidden>
+        <div id="pl-preview" class="pl-preview"></div>
+        <label class="field"><span class="label">Titre affiché</span><input id="f-title" type="text"></label>
+        <label class="field"><span class="label">Titre en arabe (optionnel)</span><input id="f-title-ar" type="text" dir="rtl" lang="ar"></label>
+        <label class="field"><span class="label">Catégorie</span>
+          <select id="f-cat">
+            <option value="arabic">Séries arabes</option>
+            <option value="turkish">Séries turques</option>
+            <option value="anime">Anime</option>
+            <option value="kids">Enfants</option>
+            <option value="films">Films</option>
+            <option value="other">Autres séries</option>
+          </select></label>
+        <label class="field field-row"><span class="label">La playlist commence par le dernier épisode (inverser l'ordre)</span><input id="f-reverse" type="checkbox"></label>
+        <div class="field">
+          <span class="label">Associer à la fiche TMDB (optionnel : affiche et badge « Gratuit » sur la fiche)</span>
+          <div class="admin-inline"><input id="tmdb-q" type="text"><button class="btn" id="tmdb-go" type="button">Chercher</button></div>
+          <div id="tmdb-results" class="tmdb-results"></div>
+        </div>
+        <div class="btns"><button class="btn btn-primary" id="add" type="button">Ajouter au catalogue</button><button class="btn" id="cancel" type="button">Annuler</button></div>
+      </div>
+    </section>
+
+    <section class="admin-card">
+      <h2>3. Catalogue <span id="cat-count" class="count"></span></h2>
+      <div id="table"></div>
+    </section>
+
+    <section class="admin-card">
+      <h2>4. Films Internet Archive à masquer</h2>
+      <p class="muted small">Un identifiant par ligne : la partie après /film/ dans l'adresse du film.</p>
+      <textarea id="blocklist" rows="4" spellcheck="false"></textarea>
+    </section>
+
+    <section class="admin-card">
+      <h2>5. Publier</h2>
+      <div class="btns"><button class="btn btn-primary" id="download" type="button">Télécharger catalog.json</button><button class="btn" id="copy" type="button">Copier le JSON</button></div>
+    </section>
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="/js/admin.js"></script>
+</body>
+</html>
